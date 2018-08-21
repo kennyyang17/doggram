@@ -1,7 +1,40 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+#Users
+
+User.delete_all
+Picture.delete_all
+Tag.delete_all
+Comment.delete_all
+PictureTag.delete_all
+
+10.times do
+  User.create(
+    username: Faker::Name.name,
+    email: Faker::Internet.email,
+    password: Faker::Name.name
+  )
+end
+
+ #Tags
+["Nature", "NYC", "Art", "Humor"].each do |tag_name|
+  Tag.create(name: tag_name)
+end
+
+ #Dogs
+
+picture1 = Picture.create(image_url: "https://i.kinja-img.com/gawker-media/image/upload/s--WFkXeene--/c_scale,f_auto,fl_progressive,q_80,w_800/ol9ceoqxidudap8owlwn.jpg", title: "Cute Puppy", user_id: 2)
+picture3 = Picture.create(image_url: "https://cdn.shopify.com/s/files/1/1324/6367/collections/Why_all_dogs_love_us_close_up_large.jpg?v=1487160259", title: "Dog With Flower", user_id: 1)
+picture4 = Picture.create(image_url: "http://www.slate.com/content/dam/slate/articles/health_and_science/Science/2017/08/170803_MEDEX_SickDog.jpg.CROP.promo-xlarge2.jpg", title: "Pug", user_id: 9)
+picture5 = Picture.create(image_url: "https://www.petmd.com/sites/default/files/salmonella-infection-dogs.jpg", title: "Happy Dog", user_id: 4)
+
+#Comments
+
+comment1 = Comment.create(content: "Funny!", picture_id: 1, user_id: 1)
+comment2 = Comment.create(content: "Yes!", picture_id: 2, user_id: 2)
+comment3 = Comment.create(content: "I agree!", picture_id: 3, user_id: 3)
+
+#Picture tags
+
+picture_tag1 = PictureTag.create(picture_id: 1, tag_id: 1)
+picture_tag2 = PictureTag.create(picture_id: 1, tag_id: 2)
+picture_tag3 = PictureTag.create(picture_id: 2, tag_id: 3)
+picture_tag4 = PictureTag.create(picture_id: 1, tag_id: 1)

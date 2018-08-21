@@ -1,0 +1,15 @@
+
+<h1>Hello <%= @user.username %>! </h1>
+<%= link_to "Users Page", users_path %><br>
+<br>
+<h3><%=link_to "Upload a pic!", new_picture_path %></h3>
+
+<%if @user.pictures.empty?%>
+   <h1>Upload some Pics!</h1>
+ <%else%>
+ <h2>Here are <%= @user.username %>'s pics!!!! </h2>
+   <%@pictures.each do |picture| %>
+     <h2><%= picture.title %><h2>
+       <%= link_to (image_tag (picture.image_url)), picture_path(picture) %><br>
+   <% end %>
+ <%end%>
