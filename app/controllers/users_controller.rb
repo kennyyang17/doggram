@@ -15,6 +15,7 @@ skip_before_action :signin_required, :only => [:signup, :create, :index]
       session[:user_id] = @user.id
       redirect_to @user
     else
+      flash[:error] = @user.errors.full_messages[0]
       redirect_to users_signup_path
     end
   end

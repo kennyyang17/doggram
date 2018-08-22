@@ -1,11 +1,13 @@
 class PicturesController < ApplicationController
   def index
-    @pictures = Picture.all
+    @pictures = Picture.all.order('created_at DESC')
   end
 
   def show
     @picture = Picture.find(params[:id])
     @comment = Comment.new
+    @comment.user = current_user
+    @comment.picture = @picture
     @comments = @picture.comments
   end
 

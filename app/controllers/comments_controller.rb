@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
        if @comment.save
          redirect_to picture_path(@comment.picture)
        else
-         redirect_to picture_path(@comment.picture)
+         redirect_to pictures_path
        end
     end
 

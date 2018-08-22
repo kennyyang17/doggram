@@ -1,4 +1,5 @@
 <h1> Please sign in to your account! </h1>
+<%= flash[:error] %>
 <%= form_tag("/sessions", method: "post") do %>
   Username:<%= text_field_tag("username") %><br>
   Password:<%= password_field_tag("password") %><br>
