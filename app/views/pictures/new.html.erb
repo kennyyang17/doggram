@@ -1,10 +1,12 @@
 <h1> Upload Your Pic! </h1>
     <%= form_with model: @picture do |f| %>
-    <%=f.label :post_title%>:
+    <%=f.label :title%>:
     <%= f.text_field :title %><br>
-    <%=f.label :image_url%>
+    <%=f.label :image_url %>:
+    <%= f.file_field :image_url %><br>
+    Or
+    Paste url:
     <%= f.text_field :image_url %><br>
-    <%=f.label :user_id%>
-    <%= f.text_field :user_id %><br>
+    <%= f.hidden_field :user_id%><br>
     <%= f.submit value="Upload Picture" %>
   <% end %>

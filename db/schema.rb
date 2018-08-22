@@ -28,9 +28,9 @@ ActiveRecord::Schema.define(version: 2018_08_20_220408) do
   end
 
   create_table "pictures", force: :cascade do |t|
-    t.string "image_url"
     t.string "title"
     t.integer "user_id"
+    t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2018_08_20_220408) do
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "username"
-    t.string "password"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

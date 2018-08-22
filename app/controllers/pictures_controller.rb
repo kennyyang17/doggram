@@ -5,7 +5,7 @@ class PicturesController < ApplicationController
 
   def show
     @picture = Picture.find(params[:id])
-    @comment = Comment.new(picture_id: @picture.id, user_id: 1)
+    @comment = Comment.new
     @comments = @picture.comments
   end
 
@@ -13,15 +13,17 @@ class PicturesController < ApplicationController
     @picture = Picture.find(params[:id])
   end
 
+  def new
+    @picture = Picture.new
+  end
+
   def create
     @picture = Picture.new(picture_params)
-    if @picture.valid?
-      @picture.save
-      redirect_to pictures_path
-      # redirect_to picture_path(@picture)
+    @picture.user_id = current_user.id
+    if @picture.save
+      redirect_to picture_path(@picture)
     else
       redirect_to new_picture_path
-      # render :new
     end
   end
 
@@ -33,7 +35,7 @@ class PicturesController < ApplicationController
   private
 
   def picture_params
-    params.require(:picture).permit(:image_url, :title, :user_id)
+    params.require(:picture).permit(:title, :user_id, :image_url)
   end
 
 end

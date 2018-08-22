@@ -1,8 +1,11 @@
+<h2><%=link_to "Back to #{@picture.user.username}'s profile...", @picture.user%></h2>
+<h2><%=link_to "Back to your Profile!", current_user%></h2>
 
-<h2><%=link_to "Back to Profile", @picture.user%></h2>
 
 <h1><%= @picture.title %></h1>
-<%= image_tag (@picture.image_url) %>
+
+<%= (image_tag (@picture.image_url)) %>
+
 <h1> Comment on this picture: <h1>
 <%= form_with model: @comment do |f| %>
   <%= f.hidden_field :picture_id %> <br>
@@ -12,5 +15,5 @@
   <%= f.submit %>
 <% end %><br>
 <% @comments.each do |comment| %>
-  <%= comment.user.username %> : <%= comment.content %> <br>
+<%= link_to comment.user.username, user_path(comment.user) %> : <%= comment.content %> <br>
 <% end %>
