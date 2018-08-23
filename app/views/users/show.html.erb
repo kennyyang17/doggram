@@ -1,20 +1,26 @@
 
-<% if @user.username != current_user.username %>
-<h1>Hello! </h1>
-<% else %>
-<h1> Hello <%= @user.username %>! </h1>
-<% end %>
+<%if @user.id == current_user.id%>
+  <h2><%=link_to "Please share a Dog Pic!", new_picture_path %></h2>
+  <br><%= link_to "Home Page", users_path %></br>
+  <%else%>
+    <br> <%= link_to "Home Page", users_path %></br>
+  <%end%>
+  
 
-<%= link_to "Users Page", users_path %><br>
-<br>
-<h3><%=link_to "Upload a pic!", new_picture_path %></h3>
+  <%if @user.pictures.empty?%>
+    <h1>Upload some pics!</h1>
+  <%else%>
+    <%if @user.id == current_user.id%>
+      <h2>Here are your pics!</h2>
+    <%else%>
+      <h2>Here are <%= @user.username %>'s pics... </h2>
+    <%end%>
+      <%@pictures.order('created_at DESC').each do |picture| %>
+      <h1><%= picture.title %><h2>
+        <%= link_to (image_tag (picture.image_url), style:"height: auto; width: 400px;"), picture_path(picture) %><br>
+    <% end %>
+  <%end%>
 
-<%if @user.pictures.empty?%>
-   <h1>Upload some Pics!</h1>
- <%else%>
- <h2>Here are <%= @user.username %>'s pics!!!! </h2>
-   <%@pictures.each do |picture| %>
-     <h2><%= picture.title %><h2>
-       <%= link_to (image_tag (picture.image_url)), picture_path(picture) %><br>
-   <% end %>
+ <%if @user.id == current_user.id%>
+   <%= link_to "Delete Account", user_path(@user), :method => 'delete' %><br>
  <%end%>

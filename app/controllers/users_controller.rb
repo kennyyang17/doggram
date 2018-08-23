@@ -40,6 +40,9 @@ skip_before_action :signin_required, :only => [:signup, :create, :index]
 
 
   def destroy
+    User.find_by(username: params[:id]).destroy
+    session[:user_id] = nil
+    redirect_to users_path
   end
 
 

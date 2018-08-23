@@ -3,10 +3,14 @@
     <%=f.label :title%>:
     <%= f.text_field :title %><br>
     <%=f.label :image_url %>:
-    <%= f.file_field :image_url %><br>
+    <%= f.file_field :image %><br>
     Or
     Paste url:
     <%= f.text_field :image_url %><br>
     <%= f.hidden_field :user_id%><br>
     <%= f.submit value="Upload Picture" %>
+
+
+    <%= f.label :tags%>:
+    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
   <% end %>

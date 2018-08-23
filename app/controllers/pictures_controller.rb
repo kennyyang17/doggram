@@ -31,13 +31,15 @@ class PicturesController < ApplicationController
 
 
   def destroy
+    Picture.find(params[:id]).destroy
+    redirect_to user_path(current_user)
   end
 
 
   private
 
   def picture_params
-    params.require(:picture).permit(:title, :user_id, :image_url)
+    params.require(:picture).permit(:title, :user_id, :image_url, :image, tag_ids:[])
   end
 
 end

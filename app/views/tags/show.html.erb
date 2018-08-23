@@ -1,9 +1,9 @@
 
 
-  <h1><%= @tag.name%><h2>
-
-
+<h1>Here are <%=@tag.name%> pics!</h1>
   <% @tag.pictures.each do |picture| %>
-    <h1> <%= picture.title %> </h1
-  <%= link_to (image_tag (picture.image_url)), picture_path(picture) %><br>
-  <% end %>
+  <ul>
+    <li><h2><%= picture.title %></li></h2>
+    <h3><%= image_tag picture.image_url, style:"height: auto; width: 500px;"%></h3>
+      </ul>
+  <%end%>

@@ -1,5 +1,4 @@
 #Users
-
 User.delete_all
 Picture.delete_all
 Tag.delete_all
@@ -15,7 +14,7 @@ PictureTag.delete_all
 end
 
  #Tags
-["Nature", "NYC", "Art", "Humor"].each do |tag_name|
+["Happy", "Funny", "Art", "Lovely"].each do |tag_name|
   Tag.create(name: tag_name)
 end
 
@@ -28,13 +27,13 @@ picture4 = Picture.create(image_url: "https://www.petmd.com/sites/default/files/
 
 #Comments
 
-comment1 = Comment.create(content: "Funny!", picture_id: 1, user_id: 1)
-comment2 = Comment.create(content: "Yes!", picture_id: 2, user_id: 2)
-comment3 = Comment.create(content: "I agree!", picture_id: 3, user_id: 3)
+comment1 = Comment.create(content: "Amazing!", picture_id: 1, user_id: 1)
+comment2 = Comment.create(content: "Wow!", picture_id: 2, user_id: 2)
+comment3 = Comment.create(content: "I love this photo!", picture_id: 3, user_id: 3)
 
 #Picture tags
 
 picture_tag1 = PictureTag.create(picture_id: 1, tag_id: 1)
 picture_tag2 = PictureTag.create(picture_id: 1, tag_id: 2)
 picture_tag3 = PictureTag.create(picture_id: 2, tag_id: 3)
-picture_tag4 = PictureTag.create(picture_id: 1, tag_id: 1)
+picture_tag4 = PictureTag.create(picture_id: 3, tag_id: 4)

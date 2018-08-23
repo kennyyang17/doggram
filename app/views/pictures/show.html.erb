@@ -1,10 +1,23 @@
-<h2><%=link_to "Back to #{@picture.user.username}'s profile...", @picture.user%></h2>
-<h2><%=link_to "Back to your Profile!", current_user%></h2>
+
+
+<%if current_user.username != @picture.user.username%>
+  <h2><%=link_to "Back to #{@picture.user.username}'s profile...", @picture.user%></h2>
+  <h2><%=link_to "Back to your Profile!", current_user%></h2>
+<%else%>
+  <h2><%=link_to "Back to your Profile!", current_user%></h2>
+<%end%>
 
 
 <h1><%= @picture.title %></h1>
+<%= (image_tag (@picture.image_url), style:"height: auto; width: 500px;") %>
+<%if @picture.user.id == current_user.id%>
+  <p><%= link_to "Delete Picture", picture_path(@picture), :method => :delete %></p>
+<%end%>
 
-<%= (image_tag (@picture.image_url)) %>
+<p>Tags:</p><% @picture.tags.each do |tag|%>
+  <%=link_to tag.name, tag_path(tag)%>
+<%end%>
+
 
 <h1> Comment on this picture: <h1>
 <%= form_with model: @comment do |f| %>
@@ -16,5 +29,11 @@
 
 <% @comments.each do |comment| %>
 <%= link_to comment.user.username, user_path(comment.user) %> : <%= comment.content %> <br>
+<%if @comment.user.id == current_user.id || @picture.user.id == current_user.id%>
+  <%= link_to "Delete Comment", comment, :method => 'delete' %><br>
+
+<%else%>
+    (deleted): <%=comment.content%><br>
+<%end%>
 
 <% end %>
