@@ -29,12 +29,11 @@
 
 <% @comments.each do |comment| %>
 <h2><%= link_to comment.user.username, user_path(comment.user) %> : <%= comment.content %> <br> </h2>
-<%if @comment.user.id == current_user.id || @picture.user.id == current_user.id%>
-<% byebug %>
+<%if comment.user.id == current_user.id || @picture.user.id == current_user.id%>
+
   <h2> <%= button_to "Delete Comment", comment, :method => 'delete' %><br> </h2>
 
-<%else%>
-    (deleted): <%=comment.content%><br>
+
 <%end%>
 
 <% end %>

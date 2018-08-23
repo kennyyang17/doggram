@@ -9,10 +9,7 @@
     <%= f.text_field :image_url %><br>
     <%= f.hidden_field :user_id%><br>
 
-    <%= f.fields_for :create_tag, Tag.new do |form| %>
-      <%= form.text_field :name, placeholder: "New tag" %>
-      <%= form.submit %>
-    <% end %>
+    <%= f.text_field :tag_names, placeholder: "New tag" %>
 
     <br> Or Choose <%= f.label :tags%>:
 

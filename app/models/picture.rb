@@ -5,7 +5,7 @@ class Picture < ApplicationRecord
   has_many :tags, through: :picture_tags
   has_one_attached :image
   accepts_nested_attributes_for :tags
-  validates :image_url, uniqueness: true
+  # validates :image_url, uniqueness: true
   # has_attached_file :image, styles: { large: "600x600>", medium: "300x300", thumb: "150x150#" }
   # validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
   def image=(uploaded_image)
@@ -16,6 +16,12 @@ class Picture < ApplicationRecord
        end
 
        self.image_url = "http://localhost:3000/assets/#{uploaded_image.original_filename}"
+   end
+
+   def tag_names=(tag_names)
+     tag_names.split(',').each do | tag_name |
+       self.tags << Tag.create(name:tag_name)
+     end
    end
 
 end
