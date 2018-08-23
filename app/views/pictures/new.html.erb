@@ -8,9 +8,17 @@
     Paste url:
     <%= f.text_field :image_url %><br>
     <%= f.hidden_field :user_id%><br>
-    <%= f.submit value="Upload Picture" %>
+
+    <%= f.fields_for :create_tag, Tag.new do |form| %>
+      <%= form.text_field :name, placeholder: "New tag" %>
+      <%= form.submit %>
+    <% end %>
+
+    <br> Or Choose <%= f.label :tags%>:
+
+    <br><%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %></br>
+    <%= f.submit value="Upload Picture" %> </br>
 
 
-    <%= f.label :tags%>:
-    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
+
   <% end %>

@@ -11,11 +11,11 @@
 <h1><%= @picture.title %></h1>
 <%= (image_tag (@picture.image_url), style:"height: auto; width: 500px;") %>
 <%if @picture.user.id == current_user.id%>
-  <p><%= link_to "Delete Picture", picture_path(@picture), :method => :delete %></p>
+  <h2><%= button_to "Delete Picture", picture_path(@picture), :method => :delete %></h2>
 <%end%>
 
-<p>Tags:</p><% @picture.tags.each do |tag|%>
-  <%=link_to tag.name, tag_path(tag)%>
+<h1>Tags:</h1><% @picture.tags.each do |tag|%>
+<h2> <%=link_to tag.name, tag_path(tag)%> </h2>
 <%end%>
 
 
@@ -24,13 +24,14 @@
   <%= f.text_area :content %> <br>
   <%= f.hidden_field :picture_id %> <br>
   <%= f.hidden_field :user_id %> <br>
-  <%= f.submit %>
+<h2>  <%= f.submit %> </h2>
 <% end %><br>
 
 <% @comments.each do |comment| %>
-<%= link_to comment.user.username, user_path(comment.user) %> : <%= comment.content %> <br>
+<h2><%= link_to comment.user.username, user_path(comment.user) %> : <%= comment.content %> <br> </h2>
 <%if @comment.user.id == current_user.id || @picture.user.id == current_user.id%>
-  <%= link_to "Delete Comment", comment, :method => 'delete' %><br>
+<% byebug %>
+  <h2> <%= button_to "Delete Comment", comment, :method => 'delete' %><br> </h2>
 
 <%else%>
     (deleted): <%=comment.content%><br>
