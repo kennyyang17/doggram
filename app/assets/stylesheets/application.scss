@@ -15,3 +15,16 @@
  */
 
  @import 'bootstrap';
+
+ body {
+    background-image: url("https://s-media-cache-ak0.pinimg.com/originals/57/00/6b/57006bb19a3b18cd24b7069ab8cbb297.jpg");
+    background-color: #cccccc;
+    // background-image: linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);
+    background-position: center top;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size:cover;
+    // background-size: contain;
+    // min-width: 100%;
+    // min-height: 100%;
+ }

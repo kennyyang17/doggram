@@ -1,22 +1,18 @@
 
 <%if @user.id == current_user.id%>
-  <h2><%=link_to "Please share a Dog Pic!", new_picture_path %></h2>
-  <br><%= link_to "Home Page", users_path %></br>
-  <%else%>
-    <br> <%= link_to "Home Page", users_path %></br>
-  <%end%>
-  
+  <h2><%=link_to "Upload Dog Pics", new_picture_path %></h2>
+<% end %>
 
   <%if @user.pictures.empty?%>
-    <h1>Upload some pics!</h1>
+    <h4>Currently No Pictures</h4>
   <%else%>
     <%if @user.id == current_user.id%>
-      <h2>Here are your pics!</h2>
+      <h4>Here are your pics!</h4>
     <%else%>
-      <h2>Here are <%= @user.username %>'s pics... </h2>
+      <h4>Here are <%= @user.username %>'s pics: </h4>
     <%end%>
       <%@pictures.order('created_at DESC').each do |picture| %>
-      <h1><%= picture.title %><h2>
+      <h3><%= picture.title %><h3>
         <%= link_to (image_tag (picture.image_url), style:"height: auto; width: 400px;"), picture_path(picture) %><br>
     <% end %>
   <%end%>

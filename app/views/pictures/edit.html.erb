@@ -1,2 +1,21 @@
-<h1>Pictures#edit</h1>
-<p>Find me in app/views/pictures/edit.html.erb</p>
+<h1> Edit Your Pic! </h1>
+    <%= form_with model: @picture do |f| %>
+    <%=f.label :title%>:
+    <%= f.text_field :title %><br>
+    <%=f.label :image_url %>:
+    <%= f.file_field :image %><br>
+    Or
+    Paste url:
+    <%= f.text_field :image_url %><br>
+    <%= f.hidden_field :user_id%><br>
+
+    <%= f.text_field :tag_names, placeholder: "New tag" %>
+
+    <br> Or Choose <%= f.label :tags%>:
+
+    <br><%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %></br>
+    <%= f.submit value="Upload Picture" %> </br>
+
+
+
+  <% end %>

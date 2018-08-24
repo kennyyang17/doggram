@@ -1,5 +1,7 @@
-<h3><%= link_to ("Create Account!"), users_signup_path%></h3>
 
+<!-- <h3><button type="button" class="btn btn-outline-primary"><%= link_to ("Create Account!"), users_signup_path %></button></h3> -->
+
+<h4>Usernames</h4>
 <% @users.each do |user| %>
-<h2><%= link_to user.username, user_path(user) %> <h2>
+<h4><%= link_to user.username.downcase, user_path(user) %> </h4>
 <% end %>

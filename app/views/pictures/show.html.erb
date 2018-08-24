@@ -1,37 +1,38 @@
 
 
 <%if current_user.username != @picture.user.username%>
-  <h2><%=link_to "Back to #{@picture.user.username}'s profile...", @picture.user%></h2>
-  <h2><%=link_to "Back to your Profile!", current_user%></h2>
+  <h5><%=button_to "Back to #{@picture.user.username}'s profile", @picture.user, :method => :get %></h5>
+  <h5><%=button_to "Back to your Profile!", current_user, :method => :get %></h5>
 <%else%>
-  <h2><%=link_to "Back to your Profile!", current_user%></h2>
+  <h5><%=button_to "Back to your Profile!", current_user, :method => :get %></h5>
 <%end%>
 
 
 <h1><%= @picture.title %></h1>
 <%= (image_tag (@picture.image_url), style:"height: auto; width: 500px;") %>
 <%if @picture.user.id == current_user.id%>
-  <h2><%= button_to "Delete Picture", picture_path(@picture), :method => :delete %></h2>
+  <h5><%= button_to "Edit Picture", edit_picture_path(@picture), :method => :get %></h5>
+  <h5><%= button_to "Delete Picture", picture_path(@picture), :method => :delete %></h5>
 <%end%>
 
-<h1>Tags:</h1><% @picture.tags.each do |tag|%>
-<h2> <%=link_to tag.name, tag_path(tag)%> </h2>
+<h3>Tags:</h3><% @picture.tags.each do |tag|%>
+<h3> <%=link_to tag.name, tag_path(tag)%> </h3>
 <%end%>
 
 
-<h1> Comment on this picture: <h1>
+<h3> Comment on this picture: <h3>
 <%= form_with model: @comment do |f| %>
   <%= f.text_area :content %> <br>
   <%= f.hidden_field :picture_id %> <br>
   <%= f.hidden_field :user_id %> <br>
-<h2>  <%= f.submit %> </h2>
+<h5>  <%= f.submit %> </h5>
 <% end %><br>
 
 <% @comments.each do |comment| %>
-<h2><%= link_to comment.user.username, user_path(comment.user) %> : <%= comment.content %> <br> </h2>
+<h3><%= link_to comment.user.username, user_path(comment.user) %> : <%= comment.content %> <br> </h3>
 <%if comment.user.id == current_user.id || @picture.user.id == current_user.id%>
 
-  <h2> <%= button_to "Delete Comment", comment, :method => 'delete' %><br> </h2>
+  <h5> <%= button_to "Delete Comment", comment, :method => 'delete' %><br> </h5>
 
 
 <%end%>

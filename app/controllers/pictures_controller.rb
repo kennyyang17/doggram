@@ -43,6 +43,16 @@ class PicturesController < ApplicationController
 
   end
 
+  def update
+    @picture = Picture.find(params[:id])
+    if @picture.update(picture_params)
+      redirect_to picture_path(@picture)
+    else
+      redirect_to edit_picture_path
+    end
+  end
+
+
 
   def destroy
     Picture.find(params[:id]).destroy
@@ -53,9 +63,7 @@ class PicturesController < ApplicationController
   private
 
   def picture_params
-    hash_params = params.require(:picture).permit(:title, :user_id, :image_url, :image, tag_ids:[])
-    hash_params[:tag_names] = params[:picture][:tag_names]
-    hash_params
+    params.require(:picture).permit(:title, :user_id, :image_url, :image, {tag_ids:[]}, :tag_names)
   end
 
 end

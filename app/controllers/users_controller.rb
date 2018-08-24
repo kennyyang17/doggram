@@ -15,7 +15,7 @@ skip_before_action :signin_required, :only => [:signup, :create, :index]
       session[:user_id] = @user.id
       redirect_to @user
     else
-      flash[:error] = @user.errors.full_messages[0]
+        flash[:error] = "Password confirmation does not match."
       redirect_to users_signup_path
     end
   end
@@ -40,7 +40,7 @@ skip_before_action :signin_required, :only => [:signup, :create, :index]
 
 
   def destroy
-    User.find_by(username: params[:id]).destroy
+    User.find(params[:id]).destroy
     session[:user_id] = nil
     redirect_to users_path
   end

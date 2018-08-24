@@ -1,5 +1,5 @@
 
 <% @pictures.each do |picture|%>
-<br> <%= link_to picture.title, picture %> </br>
+<h3><br> <%= link_to picture.title, picture %> </br></h3>
 <br> <%= link_to (image_tag (picture.image_url), style:"height: auto; width: 400px;"), picture_path(picture) %> </br>
 <% end %>
